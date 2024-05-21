@@ -38,7 +38,7 @@ const Table2 = ({ tabledata, setTableData }) => {
                                 <div className='flex justify-center px-2  items-center ' >
                                     <span className=' text-center pl-0'>{header}</span>
                                     <span className='w-max'>
-                                        <img src="./icons/dropdownArrow.svg" className={`w-6 ${sortDirection === 'asc'?"rotate-180":""} ${sortField === header?"block":"hidden"}`}/>
+                                        <img src="./icons/dropdownArrow.svg" className={`h-4 ${sortDirection === 'asc'?"rotate-180":""} ${sortField === header?"block":"hidden"}`}/>
                                     </span>
                                 </div>
                             </th>
