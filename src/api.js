@@ -1,4 +1,5 @@
 import axios from 'axios';
+import useStore from './store';
 
 const BASE_URL = 'http://127.0.0.1:8000';
 
@@ -263,5 +264,63 @@ export const getMapClientData = async (master_code) => {
   } catch (error) {
     console.error('Error fetching data:', error);
     return null;
+  }
+};
+export const getSingleClientData = async (client_code) => {
+  // const setSingleClientDetails = useStore(state => state.setSingleClientDetails);
+  const url = 'http://127.0.0.1:8000/client_portfolio/get_individual_client_details/' + client_code;
+  // const url = 'http://127.0.0.1:8000/client_portfolio/calculate_management_fee/MT_240517';
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
+    }
+
+    const responseData = await response.json();
+    // setSingleClientDetails(responseData);
+    return responseData;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    // alert("Error fetching data:");
+    return [];
+    // return [
+    //   {
+    //     "client_code": "",
+    //     "first_entry_date": "",
+    //     "chargeable_market_value": "",
+    //     "management_fee_rate": "",
+    //     "portfolio_pnl": "",
+    //     "portfolio_value": "",
+    //     "yearly_fees": "",
+    //     "daily_fees": ""
+    //   },
+    //   {
+    //     "client_code": "02SS11",
+    //     "first_entry_date": "2021-12-31",
+    //     "chargeable_market_value": 5000000,
+    //     "management_fee_rate": 1.5,
+    //     "portfolio_pnl": 0.0052,
+    //     "portfolio_value": 5026000,
+    //     "yearly_fees": 75390,
+    //     "daily_fees": 206.55
+    //   }, {
+    //     "client_code": "02SS11",
+    //     "first_entry_date": "2021-12-31",
+    //     "chargeable_market_value": 5000002,
+    //     "management_fee_rate": 1.5,
+    //     "portfolio_pnl": 0.0052,
+    //     "portfolio_value": 5026000,
+    //     "yearly_fees": 75390,
+    //     "daily_fees": 206.55
+    //   }
+
+
+    // ];
   }
 };

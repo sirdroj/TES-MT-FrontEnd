@@ -3,21 +3,22 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const SideNav = ({selectedLi,setSelectedLi}) => {
     const navigate = useNavigate();
+    const path = location.pathname.split('/')[1]||"";
   return (
-    <nav className='  fixed bg-darkBluesidenavgrey  h-[92vh] flex justify-lrft py-4 z-10 '>
-                <div className='h-full w-full relative transition-width duration-300'>
+    <nav className='  fixed bg-darkBluesidenavgrey  h-[92vh] flex justify-lrft py-4 z-[10] '>
+                <div className='h-full w-full relative transition-width duration-300 '>
                     <ul className='w-full'>
-                        <li className={`p-2  w-full border-white border-opacity-20  ${selectedLi == "dashboard" ? "bg-gray-600" : "m-[1px] hover:border-[1px] hover:m-0 "} `} onClick={() => { setSelectedLi("dashboard") }} >
+                        <li className={`p-2 lg:pr-10 w-full border-white border-opacity-20  ${path == "dashboard"|| path == ""? "bg-gray-600" : "m-[1px] hover:border-[1px] hover:m-0 "} `} onClick={() => { setSelectedLi("dashboard") }} >
                             <Link className='flex align-bottom' to={"dashboard"}>
-                                <img src='./icons/Dashboard.svg' className=' w-8 h-7' />
+                                <img src='../icons/Dashboard.svg' className=' w-8 h-7' />
                                 <span className='text-white mx-2 align-bottom mt-1 lg:block hidden'>Dashboard</span>
 
                             </Link>
                         </li>
-                        <li className={`p-2  w-full border-white border-opacity-20 ${selectedLi == "clientportfolio" ? "bg-gray-600" : " m-[1px] hover:border-[1px] hover:m-0 "} `} onClick={() => { setSelectedLi("clientportfolio") }} >
-                            <Link className='flex align-bottom' to={"clientportfolio"}>
-                                <img src='./icons/portfolio.svg' className=' w-8 h-7' />
-                                <span className='text-white mx-2 align-bottom mt-1 lg:block hidden'>Client portfolio</span>
+                        <li className={`p-2  w-full border-white border-opacity-20 ${path == "clientinfo" ? "bg-gray-600" : " m-[1px] hover:border-[1px] hover:m-0 "} `} onClick={() => { setSelectedLi("clientportfolio") }} >
+                            <Link className='flex align-bottom' to={"clientinfo"}>
+                                <img src='../icons/portfolio.svg' className=' w-8 h-7' />
+                                <span className='text-white mx-2 align-bottom mt-1 lg:block hidden'>Client Info</span>
                             </Link>
                         </li>
                     </ul>

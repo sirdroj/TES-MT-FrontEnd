@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import useStore from '../store';
 
 const getInitials = (str) => {
   const words = str.split(' ');
@@ -15,9 +16,10 @@ const getInitials = (str) => {
 
 
 const Profile = ({ userName }) => {
-
+  
+  const theme = useStore(state => state.theme);
+  const setTheme = useStore(state => state.setTheme);
   const [showDropdown, setShowDropdown] = useState(false)
-  const [theam, setTheam] = useState("dark")
 
   return (
     <div className='relative'>
@@ -35,27 +37,27 @@ const Profile = ({ userName }) => {
         <ul className='mt-2'>
           <li className='  w-full py-2 text-sm my-[1px] rounded-md p-1 hover:bg-gray-200 '>
             <Link className='flex align-bottom justify-start items-center gap-2'>
-              <img src='./icons/UserIcon.svg' className=' w-4' />
+              <img src='../icons/UserIcon.svg' className=' w-4' />
               <span className='text-black  align-bottom  block '>Profile</span>
             </Link>
           </li>
           <li className=' w-full py-2 text-sm my-[1px] rounded-md p-1  '>
             <div className='flex align-bottom justify-between items-center '>
               <div className='flex gap-2'>
-                <img src='./icons/TheamIcon.svg' className=' w-4' />
-                <span className='text-black  align-bottom  block '>Theam</span>
+                <img src='../icons/TheamIcon.svg' className=' w-4' />
+                <span className='text-black  align-bottom  block '>Theme {theme} </span>
               </div>
               <label className="cursor-pointer items-center text-sm scale-75">
                 <input
                   type="checkbox"
                   value=""
-                  checked={theam == "dark"}
+                  checked={theme == "dark"}
                   onChange={() => {
-                    if (theam == "dark") {
-                      setTheam("light")
+                    if (theme == "dark") {
+                      setTheme("light")
                     }
                     else {
-                      setTheam('dark')
+                      setTheme('dark')
                     }
                   }}
                   className="peer sr-only"
@@ -63,8 +65,8 @@ const Profile = ({ userName }) => {
                 {/* <div className=" rounded-md flex bg-blue-200 p-[1px] border-[1px] "> */}
                 <div className=" rounded-md flex bg-ice p-[1px] border-[1px] font-medium ">
                   {/* <div className={`z-10 p-[2px] px-2 rounded-l-md ${!isChecked ? "shadow-md bg-white border-[1px]" : "bg-transparent transition-colors duration-300 m-[1px]"}`}>Portfolio</div> */}
-                  <div className={`z-10 p-[2px] px-2 rounded-l-md ${theam != "dark" ? "shadow-md bg-blue-200 text-darkBluesidenavgrey border-[1px]" : "bg-transparent transition-colors duration-300 m-[1px]"}`}>Light</div>
-                  <div className={`z-10 p-[2px] px-2  rounded-r-md ${theam == "dark" ? "shadow-md bg-gray-700 text-lightgrey border-[1px]" : "bg-transparent transition-colors duration-300 m-[1px]"}`}>Dark</div>
+                  <div className={`z-10 p-[2px] px-2 rounded-l-md ${theme != "dark" ? "shadow-md bg-blue-200 text-darkBluesidenavgrey border-[1px]" : "bg-transparent transition-colors duration-300 m-[1px]"}`}>Light</div>
+                  <div className={`z-10 p-[2px] px-2  rounded-r-md ${theme == "dark" ? "shadow-md bg-gray-700 text-lightgrey border-[1px]" : "bg-transparent transition-colors duration-300 m-[1px]"}`}>Dark</div>
                 </div>
 
               </label>
@@ -72,7 +74,7 @@ const Profile = ({ userName }) => {
           </li>
           <li className='   w-full py-2 text-sm my-[1px] rounded-md p-1 hover:bg-gray-200 '>
             <Link className='flex align-bottom justify-start items-center gap-2'>
-              <img src='./icons/settings.svg' className=' w-4' />
+              <img src='../icons/settings.svg' className=' w-4' />
               <span className='text-black  align-bottom  block '>settings</span>
             </Link>
           </li>
@@ -85,7 +87,7 @@ const Profile = ({ userName }) => {
               navigate("/login");
           }} 
             >
-              <img src='./icons/Logout2.svg' className=' w-4' />
+              <img src='../icons/Logout2.svg' className=' w-4' />
               <span className='text-black  align-bottom  block '>Logout</span>
             </Link>
           </li>

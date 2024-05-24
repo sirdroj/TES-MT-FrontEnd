@@ -38,9 +38,9 @@ const MapClient = () => {
                         onChange={handleChange}
                         className="peer sr-only"
                     />
-                    <div className=" rounded-md flex bg-blue-200 p-[1px] border-[1px] ">
-                        <div className={`z-10 p-[2px] px-2 rounded-l-md ${!isChecked ? "shadow-md bg-white border-[1px]" : "bg-transparent transition-colors duration-300 m-[1px]"}`}>Bulk</div>
-                        <div className={`z-10 p-[2px] px-2 rounded-r-md ${isChecked ? "shadow-md bg-white border-[1px]" : "bg-transparent transition-colors duration-300 m-[1px]"}`}>Single</div>
+                    <div className=" rounded-md flex bg-ice p-[1px] border-[1px]  ">
+                        <div className={`z-10 p-[2px] px-2 rounded-l-md ${!isChecked ? "shadow-md bg-blue-200 text-darkBluesidenavgrey border-[1px]" : "bg-transparent transition-colors duration-300 m-[1px]"}`}>Bulk</div>
+                        <div className={`z-10 p-[2px] px-2 rounded-r-md ${isChecked ? "shadow-md bg-blue-200 text-darkBluesidenavgrey border-[1px]" : "bg-transparent transition-colors duration-300 m-[1px]"}`}>Single</div>
                     </div>
 
                 </label>

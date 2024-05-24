@@ -11,42 +11,10 @@ import { Provider } from "react-redux"
 import Register from './pages/Register.jsx';
 import Login from './pages/Login.jsx';
 import Home from './pages/Home.jsx';
-import ClientPortfolio from './routes/ClientPortfolio.jsx';
 import Dashboard from './routes/Dashboard.jsx';
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children:[
-      {
-        path:"register",
-        element:<Register />
-      },
-      {
-        path:"login",
-        element:<Login />
-      },
-      {
-        path:"",
-        element:<Home />,
-        children:[
-          {
-            path:"clientportfolio",
-            element:<ClientPortfolio />
-          },
-          {
-            path:"dashboard",
-            element:<Dashboard />
-          },
-          {
-            path:"",
-            element:<Dashboard />
-          }
-        ]
-      }
-    ]
-  },
-])
+import ClientInfo from './routes/ClientPortfolio.jsx';
+import routes from './routes.jsx';
+const router = createBrowserRouter(routes);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>

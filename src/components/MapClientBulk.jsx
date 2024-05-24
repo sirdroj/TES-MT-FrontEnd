@@ -6,8 +6,6 @@ const MapClientBulk = () => {
     const [file, setFile] = useState(null);
     const [jsonExtract, setJsonExtract] = useState();
     const [finalJsonData,setFinalJsonData]=useState();
-
-
     const keyMapping = {
         "CLIENT CODE": "client_code",
         "NAME OF THE CLIENT": "client_name",
@@ -42,9 +40,17 @@ const MapClientBulk = () => {
     const transformKeys = (list, mapping) => {
         let transformedList = list.map(item =>
             Object.entries(mapping).reduce((acc, [oldKey, newKey]) => {
-                if (newKey === "start_date") {
-                    const dateParts = item[oldKey].split('/');
-                    acc[newKey] = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+                if (newKey == "start_date"  ){
+                    if(item[oldKey].includes("/")){
+                        const dateParts = item[oldKey].split('/');
+                        acc[newKey] = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+                        // console.log("/->",{dateParts})
+                    }
+                    else{
+                        const dateParts = item[oldKey].split('-');
+                        // console.log("-:->",{dateParts})
+                        acc[newKey] = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+                    }
                   } else {
                     acc[newKey] = item[oldKey] || '';
                   }
@@ -67,9 +73,10 @@ const MapClientBulk = () => {
                     skipEmptyLines: true,
                     complete: (result) => {
                         const jsonData = result.data;
-                        console.log('JSON Data:', jsonData);
-                        setJsonExtract(jsonData);
-                        setFinalJsonData(transformKeys(jsonData,keyMapping));
+                        console.log('JSON Datad:', jsonData);
+                        // setJsonExtract(jsonData);
+                        let x=transformKeys(jsonData,keyMapping)
+                        setFinalJsonData(x);
 
                     },
                 });

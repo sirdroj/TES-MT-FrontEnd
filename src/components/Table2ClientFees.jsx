@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
+import useStore from '../store';
+import { getSingleClientData } from '../api';
 
 function capitalizeAndRemoveDash(inputString) {
     const words = inputString.split('_');
     const capitalizedString = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
     return capitalizedString;
-  }
+}
 
-const Table2 = ({ tabledata, setTableData }) => {
+
+const Table2ClientFees = ({ tabledata, setTableData, setCurrentClientCode }) => {
     const tableHeaders = Object.keys(tabledata[0]);
     const [sortField, setSortField] = useState(null);
     const [sortDirection, setSortDirection] = useState('asc');
+    const showClientFeePopUp=useStore(stste=>stste.setviewClientFeesPopup)
+
+
+
+    async function handleClientCodeClick(client_code) {
+        // alert("yoo");
+        showClientFeePopUp(true);
+        setCurrentClientCode(client_code);
+    }
+
 
     const handleSort = (field) => {
         const direction = sortField === field && sortDirection === 'asc' ? 'desc' : 'asc';
@@ -44,7 +57,7 @@ const Table2 = ({ tabledata, setTableData }) => {
                                 <div className='flex justify-center px-2  items-center ' >
                                     <span className=' text-center pl-0 w-max'>{capitalizeAndRemoveDash(header)}</span>
                                     <span className='w-max'>
-                                        <img src="../icons/dropdownArrow.svg" className={`h-4 ${sortDirection === 'asc'?"rotate-180":""} ${sortField === header?"block":"hidden"}`}/>
+                                        <img src="../icons/dropdownArrow.svg" className={`h-4 ${sortDirection === 'asc' ? "rotate-180" : ""} ${sortField === header ? "block" : "hidden"}`} />
                                     </span>
                                 </div>
                             </th>
@@ -56,9 +69,17 @@ const Table2 = ({ tabledata, setTableData }) => {
                         <tr key={index} className={index % 2 === 0 ? 'bg-lightgrey2' : ''}>
                             <td className="px-2 py-2 text-center">{index + 1}</td>
                             {tableHeaders.map((header, colIndex) => (
-                                <td className="border-x w-[10%] px-2 py-2 text-center" key={colIndex}>
-                                    {stock[header]}
-                                </td>
+                                header == "client_code" ?
+                                    <td className="border-x w-[10%] px-2 py-2 text-center hover:underline cursor-pointer text-blue-600 font-semibold" key={colIndex}
+                                        onClick={() => {
+                                            handleClientCodeClick(stock[header]);
+                                        }}
+                                    >
+                                        {stock[header]}
+                                    </td>
+                                    : <td className="border-x font-semibold w-[10%] px-2 py-2 text-center" key={colIndex}>
+                                        {stock[header]}
+                                    </td>
                             ))}
                         </tr>
                     ))}
@@ -68,4 +89,4 @@ const Table2 = ({ tabledata, setTableData }) => {
     );
 };
 
-export default Table2;
+export default Table2ClientFees;
