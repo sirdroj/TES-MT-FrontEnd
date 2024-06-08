@@ -44,20 +44,20 @@ const Table2ClientFees = ({ tabledata, setTableData, setCurrentClientCode }) => 
 
     return (
         <div className='text-gray-700 mt-5 rounded-md text-xs'>
-            <table className="border-collapse border-gray-700 bg-white shadow-md w-min">
+            <table className="border-collapse border-gray-700 bg-white dark:bg-darkbg1 dark:text-neutral-300 shadow-md w-min">
                 <thead>
                     <tr>
                         <th className="py-2 px-2">No</th>
                         {tableHeaders.map((header, index) => (
                             <th
                                 key={index}
-                                className="border-x w-max px-2 py-2 cursor-pointer "
+                                className="border-x dark:border-darkbg0 w-max px-2 py-2 cursor-pointer "
                                 onClick={() => handleSort(header)}
                             >
                                 <div className='flex justify-center px-2  items-center ' >
                                     <span className=' text-center pl-0 w-max'>{capitalizeAndRemoveDash(header)}</span>
                                     <span className='w-max'>
-                                        <img src="../icons/dropdownArrow.svg" className={`h-4 ${sortDirection === 'asc' ? "rotate-180" : ""} ${sortField === header ? "block" : "hidden"}`} />
+                                        <img src="../icons/dropdownArrow.svg" className={`h-4 dark:invert ${sortDirection === 'asc' ? "rotate-180" : ""} ${sortField === header ? "block" : "hidden"}`} />
                                     </span>
                                 </div>
                             </th>
@@ -66,18 +66,18 @@ const Table2ClientFees = ({ tabledata, setTableData, setCurrentClientCode }) => 
                 </thead>
                 <tbody>
                     {tabledata.map((stock, index) => (
-                        <tr key={index} className={index % 2 === 0 ? 'bg-lightgrey2' : ''}>
+                        <tr key={index} className={index % 2 === 0 ? 'bg-lightgrey2 dark:bg-darkbg2' : ''}>
                             <td className="px-2 py-2 text-center">{index + 1}</td>
                             {tableHeaders.map((header, colIndex) => (
                                 header == "client_code" ?
-                                    <td className="border-x w-[10%] px-2 py-2 text-center hover:underline cursor-pointer text-blue-600 font-semibold" key={colIndex}
+                                    <td className="border-x dark:border-darkbg0 w-[10%] px-2 py-2 text-center hover:underline cursor-pointer text-blue-600 font-semibold" key={colIndex}
                                         onClick={() => {
                                             handleClientCodeClick(stock[header]);
                                         }}
                                     >
                                         {stock[header]}
                                     </td>
-                                    : <td className="border-x font-semibold w-[10%] px-2 py-2 text-center" key={colIndex}>
+                                    : <td className="border-x dark:border-darkbg0 font-semibold w-[10%] px-2 py-2 text-center" key={colIndex}>
                                         {stock[header]}
                                     </td>
                             ))}

@@ -31,20 +31,20 @@ const Table2 = ({ tabledata, setTableData }) => {
 
     return (
         <div className='text-gray-700 mt-5 rounded-md text-xs'>
-            <table className="border-collapse border-gray-700 bg-white shadow-md w-min">
+            <table className="border-collapse border-gray-700 dark:text-neutral-300 bg-white dark:bg-darkbg2 shadow-md w-min">
                 <thead>
-                    <tr>
+                    <tr >
                         <th className="py-2 px-2">No</th>
                         {tableHeaders.map((header, index) => (
                             <th
                                 key={index}
-                                className="border-x w-max px-2 py-2 cursor-pointer "
+                                className="dark:border-darkbg0 border-x w-max px-2 py-2 cursor-pointer "
                                 onClick={() => handleSort(header)}
                             >
                                 <div className='flex justify-center px-2  items-center ' >
                                     <span className=' text-center pl-0 w-max'>{capitalizeAndRemoveDash(header)}</span>
                                     <span className='w-max'>
-                                        <img src="../icons/dropdownArrow.svg" className={`h-4 ${sortDirection === 'asc'?"rotate-180":""} ${sortField === header?"block":"hidden"}`}/>
+                                        <img src="../icons/dropdownArrow.svg" className={`h-4 dark:invert ${sortDirection === 'asc'?"rotate-180":""} ${sortField === header?"block":"hidden"}`}/>
                                     </span>
                                 </div>
                             </th>
@@ -53,10 +53,10 @@ const Table2 = ({ tabledata, setTableData }) => {
                 </thead>
                 <tbody>
                     {tabledata.map((stock, index) => (
-                        <tr key={index} className={index % 2 === 0 ? 'bg-lightgrey2' : ''}>
-                            <td className="px-2 py-2 text-center">{index + 1}</td>
+                        <tr key={index} className={index % 2 === 0 ? 'bg-lightgrey2 dark:bg-darkbg1' : 'dark:bg-darkbg2'}>
+                            <td className="px-2 py-2 text-center dark:border-darkbg0">{index + 1}</td>
                             {tableHeaders.map((header, colIndex) => (
-                                <td className="border-x w-[10%] px-2 py-2 text-center" key={colIndex}>
+                                <td className="border-x w-[10%] px-2 py-2 text-center dark:border-darkbg0" key={colIndex}>
                                     {stock[header]}
                                 </td>
                             ))}

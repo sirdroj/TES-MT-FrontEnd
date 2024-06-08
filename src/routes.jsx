@@ -1,11 +1,12 @@
 import App from "./App";
 import AddClientData from "./components/AddClientData";
+import AddDealSheet from "./components/AddDealSheet";
 import MapClient from "./components/MapClient";
 import ViewClient from "./components/ViewClient";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import ClientInfo from "./routes/ClientPortfolio";
+import ClientInfo from "./routes/ClientInfo";
 import Dashboard from "./routes/Dashboard";
 
 const routes = [
@@ -35,15 +36,19 @@ const routes = [
                             },
                             {
                                 path:"",
-                                element: <ViewClient />
+                                element: <MapClient />
                             },
-                            {
-                                path:"addClient",
-                                element: <AddClientData />
-                            },
+                            // {
+                            //     path:"addClient",
+                            //     element: <AddClientData />
+                            // },
                             {
                                 path:"mapClient",
                                 element: <MapClient />
+                            },
+                            {
+                                path:"addDealsheet",
+                                element: <AddDealSheet />
                             }
 
                         ],

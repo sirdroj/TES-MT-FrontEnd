@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { loginfunction } from '../api';
 import { useNavigate } from 'react-router-dom';
+import useStore from '../store';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -9,14 +10,14 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-
+    const setUserName2=useStore(state=>state.setUserName);
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
     const handleSubmit = async (event) => {
         event.preventDefault();
         const userdata = { username, password };
-        const res = loginfunction(userdata,navigate);
+        const res = loginfunction(userdata,navigate,setUserName2);
     };
 
     return (

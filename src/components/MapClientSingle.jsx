@@ -91,10 +91,10 @@ const MapClientSngle = () => {
             <form onSubmit={handleSubmit} className=' grid grid-cols-2 p-5 pl-0 w-full' enctype='multipart/form-data'>
                 {formFields.map((field, index) => (
                     <div className='relative  m-3 ml-4  ' key={index}>
-                        <label className=' text-md text-gray-600 m-2 font-normal relative'>{field.name}</label>
+                        <label className=' text-md text-gray-600 m-2 font-normal relative dark:text-neutral-300'>{field.name}</label>
                         <input
                         // {errors[field.name] ? 'border-red-500' : ''}
-                            className={` appearance-none w-full  border-[2px] p-3 rounded-md focus:outline-none focus:border-bordercolor1`}
+                            className={` dark:bg-darkbg1 dark:border-darkbg2 dark:text-neutral-300 file-input appearance-none w-full m-[4px] border-[2px] p-3 rounded-sm focus:outline-none focus:border-bordercolor1 `}
                             type={field.type}
                             placeholder={field.name.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
                             value={formData[field.name]}
@@ -107,7 +107,7 @@ const MapClientSngle = () => {
                 ))}
 
                 {/* <input type="submit" value="Add" className='cursor-pointer p-2 font-bold bg-gradient-to-r from-bordercolor1 to-bordercolor2 text-white rounded-md px-4 mt-7 w-full' /> */}
-                <input type="submit" value="Add" className='cursor-pointer p-2 font-bold bg-white shadow-md rounded-md px-4 mt-7 w-28 text-gray-500' />
+                <input type="submit" value="Add" className='cursor-pointer p-2 font-bold bg-white dark:bg-neutral-600 dark:text-neutral-300 shadow-md rounded-md px-4 my-3 ml-1 w-28 text-gray-500' />
                 {/* <input onClick={handleSubmit} value="testubmit" className='cursor-pointer p-2 font-bold bg-white shadow-md rounded-md px-4 mt-7 w-28 text-gray-500' /> */}
             </form>
         </div>

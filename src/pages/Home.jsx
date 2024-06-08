@@ -25,7 +25,7 @@ const Home = () => {
     }, [navigate]);
 
     return (
-        <div className='flex bg-lightgrey relative h-[94vh] mt-[7vh]'>
+        <div className='flex   relative h-[94vh] mt-[7vh]'>
             <div className='lg:w-46 fixed z-20'>
                 <SideNav selectedLi={selectedLi} setSelectedLi={setSelectedLi} />
                 {/* <SideNav2 selectedLi={selectedLi} setSelectedLi={setSelectedLi} /> */}

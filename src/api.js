@@ -24,7 +24,8 @@ export const registerfunction = async (userdata) => {
     return (false)
   }
 }
-export const loginfunction = async (userdata, navigate) => {
+export const loginfunction = async (userdata, navigate,setUserName2) => {
+  
   try {
     if (localStorage.getItem("refreshToken")) {
       alert("Your last login session is active");
@@ -44,6 +45,7 @@ export const loginfunction = async (userdata, navigate) => {
     console.log({ data });
     alert("Login successful");
     localStorage.setItem("userName", userdata.username);
+    setUserName2(userdata.username);
     localStorage.setItem("refreshToken", data.refresh);
     localStorage.setItem("accessToken", data.access);
     navigate("/");
@@ -76,7 +78,7 @@ export const addData = async (formData) => {
     return false;
   }
 };
-export const getCliendData = async (ClientId) => {
+export const getCliendData = async (ClientCode) => {
   try {
     // if (localStorage.getItem("refreshToken")) {
     //   // alert("Your last login session is active");
@@ -85,7 +87,7 @@ export const getCliendData = async (ClientId) => {
     // }
 
     // const res = await fetch(BASE_URL + '/client_portfolio/get_client_stock_data/' + ClientId, {
-    const res = await fetch(BASE_URL + '/client_portfolio/get_stock_data/' + ClientId, {
+    const res = await fetch(BASE_URL + '/client_portfolio/get_stock_data/' + ClientCode, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -267,9 +269,7 @@ export const getMapClientData = async (master_code) => {
   }
 };
 export const getSingleClientData = async (client_code) => {
-  // const setSingleClientDetails = useStore(state => state.setSingleClientDetails);
   const url = 'http://127.0.0.1:8000/client_portfolio/get_individual_client_details/' + client_code;
-  // const url = 'http://127.0.0.1:8000/client_portfolio/calculate_management_fee/MT_240517';
   try {
     const response = await fetch(url, {
       method: 'GET',
@@ -283,44 +283,43 @@ export const getSingleClientData = async (client_code) => {
     }
 
     const responseData = await response.json();
-    // setSingleClientDetails(responseData);
     return responseData;
   } catch (error) {
     console.error('Error fetching data:', error);
     // alert("Error fetching data:");
     return [];
-    // return [
-    //   {
-    //     "client_code": "",
-    //     "first_entry_date": "",
-    //     "chargeable_market_value": "",
-    //     "management_fee_rate": "",
-    //     "portfolio_pnl": "",
-    //     "portfolio_value": "",
-    //     "yearly_fees": "",
-    //     "daily_fees": ""
-    //   },
-    //   {
-    //     "client_code": "02SS11",
-    //     "first_entry_date": "2021-12-31",
-    //     "chargeable_market_value": 5000000,
-    //     "management_fee_rate": 1.5,
-    //     "portfolio_pnl": 0.0052,
-    //     "portfolio_value": 5026000,
-    //     "yearly_fees": 75390,
-    //     "daily_fees": 206.55
-    //   }, {
-    //     "client_code": "02SS11",
-    //     "first_entry_date": "2021-12-31",
-    //     "chargeable_market_value": 5000002,
-    //     "management_fee_rate": 1.5,
-    //     "portfolio_pnl": 0.0052,
-    //     "portfolio_value": 5026000,
-    //     "yearly_fees": 75390,
-    //     "daily_fees": 206.55
-    //   }
+    return [
+      {
+        "client_code": "",
+        "first_entry_date": "",
+        "chargeable_market_value": "",
+        "management_fee_rate": "",
+        "portfolio_pnl": "",
+        "portfolio_value": "",
+        "yearly_fees": "",
+        "daily_fees": ""
+      },
+      {
+        "client_code": "02SS11",
+        "first_entry_date": "2021-12-31",
+        "chargeable_market_value": 5000000,
+        "management_fee_rate": 1.5,
+        "portfolio_pnl": 0.0052,
+        "portfolio_value": 5026000,
+        "yearly_fees": 75390,
+        "daily_fees": 206.55
+      }, {
+        "client_code": "02SS11",
+        "first_entry_date": "2021-12-31",
+        "chargeable_market_value": 5000002,
+        "management_fee_rate": 1.5,
+        "portfolio_pnl": 0.0052,
+        "portfolio_value": 5026000,
+        "yearly_fees": 75390,
+        "daily_fees": 206.55
+      }
 
 
-    // ];
+    ];
   }
 };

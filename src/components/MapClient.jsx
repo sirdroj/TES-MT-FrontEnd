@@ -38,14 +38,14 @@ const MapClient = () => {
                         onChange={handleChange}
                         className="peer sr-only"
                     />
-                    <div className=" rounded-md flex bg-ice p-[1px] border-[1px]  ">
-                        <div className={`z-10 p-[2px] px-2 rounded-l-md ${!isChecked ? "shadow-md bg-blue-200 text-darkBluesidenavgrey border-[1px]" : "bg-transparent transition-colors duration-300 m-[1px]"}`}>Bulk</div>
-                        <div className={`z-10 p-[2px] px-2 rounded-r-md ${isChecked ? "shadow-md bg-blue-200 text-darkBluesidenavgrey border-[1px]" : "bg-transparent transition-colors duration-300 m-[1px]"}`}>Single</div>
+                    <div className="  rounded-md flex bg-ice text-darkBluesidenavgrey dark:bg-darkbg1 p-[1px] border-[1px] dark:border-darkbg2 dark:text-neutral-300 ">
+                        <div className={` p-[2px] px-2 rounded-l-md ${!isChecked ? "shadow-md bg-blue-200 dark:bg-neutral-600  border-[1px] dark:border-darkbg2  dark:text-neutral-300" : "bg-transparent transition-colors duration-300 m-[1px]"}`}>Bulk</div>
+                        <div className={` p-[2px] px-2  rounded-r-md ${isChecked ? "shadow-md bg-blue-200 dark:bg-neutral-600  border-[1px] dark:border-darkbg2  dark:text-neutral-300" : "bg-transparent transition-colors duration-300 m-[1px]"}`}>Single</div>
                     </div>
 
                 </label>
 
-                <h1 className='font-semibold text-center w-96 text-gray-600'>{!isChecked ? "Map Client in bulk" : "Map a Single Client"}</h1>
+                <h1 className='font-semibold text-center w-96 dark:text-neutral-300 text-gray-600'>{!isChecked ? "Map Client in bulk" : "Map a Single Client"}</h1>
 
             </nav>
             <div className='w-'>

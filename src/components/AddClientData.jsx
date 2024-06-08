@@ -6,42 +6,18 @@ const AddClientData = () => {
     const navigate = useNavigate();
 
     const [Name, setName] = useState('');
-    const [ClientId, setClientId] = useState('');
+    const [ClientCode, setClientCode] = useState('');
     const [Email, setEmail] = useState("");
-    const [file, setFile] = useState(null); // State for file
+    const [file, setFile] = useState(null);
     const [shownError, setShownError] = useState(null)
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
         formData.append('name', Name);
-        formData.append('client_id', ClientId);
+        formData.append('client_code', ClientCode);
         formData.append('email', Email);
         formData.append('csv_file', file);
         console.log({ formData });
-        // const res=addData(formData);
-
-        // try {
-        //     const response = await fetch('http://127.0.0.1:8000/client_portfolio/add_client_data/', {
-        //         method: 'POST',
-        //         body: formData
-        //     });
-        //     console.log({response})
-        //     if (response.ok){
-        //      alert("client Added")
-        //     } 
-        //     else {
-        //         throw new Error(response.statusText);
-        //     }
-        // } catch (error) {
-        //     console.error('Error uploading file:', error);
-        //     console.log({error})
-        //     if (error.message.includes('UNIQUE constraint failed')) {
-        //         alert('A record with the same unique key already exists.');
-        //     } else {
-        //         alert('Error uploading file: ' + error.message);
-        //     }
-        // }
-
         try {
             const response = await fetch('http://127.0.0.1:8000/client_portfolio/add_client_data/', {
                 method: 'POST',
@@ -89,18 +65,18 @@ const AddClientData = () => {
                 <div className='relative'>
                     <div>{shownError}</div>
                     <input
-                        className='my-3 appearance-none  w-full m-[4px]  border-[2px] p-3 rounded-sm focus:outline-none focus:border-bordercolor1 '
+                        className='dark:bg-darkbg1 dark:border-darkbg2 my-3 appearance-none  w-full m-[4px]  border-[2px] p-3 rounded-sm focus:outline-none focus:border-bordercolor1 '
                         type="text"
-                        placeholder="Client Id"
-                        value={ClientId}
-                        onChange={(e) => setClientId(e.target.value)}
+                        placeholder="Client Code"
+                        value={ClientCode}
+                        onChange={(e) => setClientCode(e.target.value)}
                         required
                         name='ClientId'
                     />
                 </div>
                 <div>
                     <input
-                        className='my-3 appearance-none  w-full m-[4px]  border-[2px] p-3 rounded-sm focus:outline-none focus:border-bordercolor1 '
+                        className='dark:bg-darkbg1 dark:border-darkbg2 my-3 appearance-none  w-full m-[4px]  border-[2px] p-3 rounded-sm focus:outline-none focus:border-bordercolor1 '
                         type="text"
                         placeholder="Name"
                         value={Name}
@@ -111,7 +87,7 @@ const AddClientData = () => {
                 </div>
                 <div className='relative'>
                     <input
-                        className='my-3 appearance-none  w-full m-[4px]  border-[2px] p-3 rounded-sm focus:outline-none focus:border-bordercolor1 '
+                        className='dark:bg-darkbg1 dark:border-darkbg2 my-3 appearance-none  w-full m-[4px]  border-[2px] p-3 rounded-sm focus:outline-none focus:border-bordercolor1 '
                         type="Email"
                         placeholder="Email"
                         value={Email}
@@ -125,7 +101,7 @@ const AddClientData = () => {
                     <input
                         type="file"
                         onChange={handleFileChange}
-                        className='my-3 file-input appearance-none w-full m-[4px] border-[2px] p-3 rounded-sm focus:outline-none focus:border-bordercolor1'
+                        className=' dark:bg-darkbg1 dark:border-darkbg2 dark:text-neutral-300 file-input appearance-none w-full m-[4px] border-[2px] p-3 rounded-sm focus:outline-none focus:border-bordercolor1'
                         // required
                         name='file'
                         accept=".csv"
@@ -135,7 +111,8 @@ const AddClientData = () => {
                 </div>
 
                 {/* <input type="submit" value="Add" className='cursor-pointer p-2 font-bold bg-gradient-to-r from-bordercolor1 to-bordercolor2 text-white rounded-md px-4 mt-7 w-full' /> */}
-                <input type="submit" value="Add" className='cursor-pointer p-2 font-bold bg-white shadow-md rounded-md px-4 mt-7 w-28 text-gray-500' />
+                {/* <input type="submit" value="Add" className='cursor-pointer p-2 font-bold bg-white shadow-md rounded-md px-4 mt-7 w-28 text-gray-500' /> */}
+                <input type="submit" value="Add" className='cursor-pointer p-2 font-bold bg-white dark:bg-neutral-600 dark:text-neutral-300 shadow-md rounded-md px-4 my-3 ml-1 w-28 text-gray-500' />
             </form>
         </div>
     )

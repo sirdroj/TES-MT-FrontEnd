@@ -107,7 +107,7 @@ const MapClientBulk = () => {
                             type="file"
                             id="file-upload"
                             onChange={handleFileChange}
-                            className="file-input appearance-none w-full m-[4px] border-[2px] p-3 rounded-sm focus:outline-none focus:border-bordercolor1"
+                            className=" dark:bg-darkbg1 dark:border-darkbg2 dark:text-neutral-300 file-input appearance-none w-full m-[4px] border-[2px] p-3 rounded-sm focus:outline-none focus:border-bordercolor1"
                             name="file"
                             accept=".csv"
                         />
@@ -116,9 +116,9 @@ const MapClientBulk = () => {
                 <input
                     type="submit"
                     value="Add"
-                    className="cursor-pointer p-2 font-bold bg-white shadow-md rounded-md px-4 my-3 ml-1 w-28 text-gray-500"
+                    className="cursor-pointer p-2 font-bold bg-white dark:bg-neutral-600 dark:text-neutral-300 shadow-md rounded-md px-4 my-3 ml-1 w-28 text-gray-500"
                 />
-                <div className='ml-1 my-3'>
+                <div className='ml-1 my-3 dark:text-neutral-200'>
                     <span className="font-bold ">Note: </span>
                     The CSV file uploaded should be in the correct format.
                 </div>

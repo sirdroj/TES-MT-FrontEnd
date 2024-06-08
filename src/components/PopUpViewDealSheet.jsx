@@ -8,28 +8,61 @@ function capitalizeAndRemoveDash(inputString) {
     const capitalizedString = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
     return capitalizedString;
   }
+  ;
 
-const PopUpViewClientFeeDetails = ({ demodata, ClientCode }) => {
-    const ShowPopUp = useStore(state => state.viewClientFeesPopup);
-    const setShowPopUp = useStore(state => state.setviewClientFeesPopup);
-    const [tabledata, setTableData] = useState([]);
+const PopUpViewDealSheet = ({ masterCode,ShowPopUp,setShowPopUp }) => {
     const [sortField, setSortField] = useState(null);
     const [sortDirection, setSortDirection] = useState('asc');
+    const [tabledata,setTableData]=useState([
+        {
+            "ISIN No.": "INE117A01022",
+            "Stock Name": "ABB INDIA LIMITED",
+            "CMP": "6529.8",
+            "Buy Qty": "85",
+            "Buy Value": "555033",
+            "02SS11": "30",
+            "02AM11": "55",
+            "02YM11": "30",
+            
+          },
+        {
+            "ISIN No.": "INE358A01014",
+            "Stock Name": "ABBOTT INDIA LIMITED",
+            "CMP": "26420.5",
+            "Buy Qty": "84",
+            "Buy Value": "5550333",
+            "02SS11": "30",
+            "02AM11": "55",
+            "02YM11": "30",
+            
+          },
+        {
+            "ISIN No.": "INE731H01025",
+            "Stock Name": "ACTION CONSTRUCTION EQUIPMENT LIMITED",
+            "CMP": "1551.95",
+            "Buy Qty": "603",
+            "Buy Value": "10050333",
+            "02SS11": "20",
+            "02AM11": "45",
+            "02YM11": "60",
+            
+          }
+    ]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await getSingleClientData(ClientCode);
-                setTableData(data);
-            } catch (error) {
-                console.error("Error fetching data: ", error);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const data = await getSingleClientData(ClientCode);
+    //             setTableData(data);
+    //         } catch (error) {
+    //             console.error("Error fetching data: ", error);
+    //         }
+    //     };
 
-        if (ClientCode) {
-            fetchData();
-        }
-    }, [ClientCode]);
+    //     if (ClientCode) {
+    //         fetchData();
+    //     }
+    // }, [ClientCode]);
 
     const handleSort = (field) => {
         const direction = sortField === field && sortDirection === 'asc' ? 'desc' : 'asc';
@@ -64,8 +97,11 @@ const PopUpViewClientFeeDetails = ({ demodata, ClientCode }) => {
             <div className='h-full items-center pr-10 pt-0 justify-center'>
                 <div className='w-full h-[85%] bg-white px-10 p-5  shadow-md rounded-lg z-10 '>
                     <header className='justify-around'>
-                        <h1 className='text-center text-[25px] font-semibold w-full border-b-[1px]'>Fee Calculations</h1>
-                        <h1 className='p-2'>Client Code: <b>{ClientCode}</b></h1>
+                        <h1 className='text-center text-[25px] font-semibold w-full border-b-[1px]'>Deal Sheet</h1>
+                        <div className='flex justify-between'>
+                        <h1 className='p-2'>MasterCode: <b>{masterCode}</b></h1>
+                        <button className='d px-2 p-1 rounded-md m-2 bg-blue-400 shadow-md active:shadow-none text-neutral-900'>Send to FA</button>
+                        </div>
                     </header>
                     <div className='flex justify-start overflow-scroll h-[86%]'>
                         {tabledata.length === 0 ? "No data found" :
@@ -78,7 +114,7 @@ const PopUpViewClientFeeDetails = ({ demodata, ClientCode }) => {
                                                     // setTableData(demodata)
                                                     setSortField("")
                                                 }}
-                                                className="border-x  px-0 py-2 cursor-pointer text-[16px]"
+                                                className="border-x  px-2 py-2 cursor-pointer text-[16px]"
                                             >
                                                 No
                                             </th>
@@ -103,10 +139,10 @@ const PopUpViewClientFeeDetails = ({ demodata, ClientCode }) => {
                                     </thead>
                                     <tbody>
                                         {tabledata.map((stock, index) => (
-                                            <tr key={index} className={index % 2 === 0 ? 'bg-lightgrey2' : ''}>
-                                                <td className="px-2 py-2 text-center">{index + 1}</td>
+                                            <tr key={index} className={index % 2 === 0 ? 'bg-lightgrey2 ' : ''}>
+                                                <td className="border-x  font-semibold text-[15px]  px-2 py-2 text-center">{index + 1}</td>
                                                 {tableHeaders.map((header, colIndex) => (
-                                                    <td className="border-x font-semibold text-[15px] w-[10%] lg:w-max px-2 py-2 text-center" key={colIndex}>
+                                                    <td className="border-x font-semibold text-[15px] w-max px-2 py-2 text-center" key={colIndex}>
                                                         {stock[header]}
                                                     </td>
                                                 ))}
@@ -123,4 +159,4 @@ const PopUpViewClientFeeDetails = ({ demodata, ClientCode }) => {
     )
 }
 
-export default PopUpViewClientFeeDetails
+export default PopUpViewDealSheet

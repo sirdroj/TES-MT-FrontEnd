@@ -4,6 +4,7 @@ import { getMapClientData } from '../api';
 import Table2 from './Table2';
 import PopUpViewClientFeeDetails from './PopUpViewClientFeeDetails';
 import Table2ClientFees from './Table2ClientFees';
+import PopUpViewDealSheet from './PopUpViewDealSheet';
 
 const ViewClientFees = () => {
 
@@ -223,6 +224,7 @@ const ViewClientFees = () => {
 
     const localMasterCode = sessionStorage.getItem("localMapClientMasterCode");
     const localMapClientData = sessionStorage.getItem("localMapClientData");
+    const [showDealSheet,setShowDealSheet]=useState(false);
     const [inputValue, setInputValue] = useState(localMasterCode);
     const [masterCode, setMasterCode] = useState(localMasterCode || "");
     const [mapData, setMapData] = useState(localMapClientData ? JSON.parse(localMapClientData) : []);
@@ -250,8 +252,9 @@ const ViewClientFees = () => {
     return (
         <div className=" mt-5 pb-10">
             <PopUpViewClientFeeDetails demodata={demodata} ClientCode={currentClientCode} />
+            <PopUpViewDealSheet ShowPopUp={showDealSheet} setShowPopUp={setShowDealSheet} masterCode={masterCode} />
             <div className='flex justify-between items-center'>
-                <form onSubmit={handleSubmit} className='flex bg-gray-50 h-10 w-80 mx-2 px-2 border-[1px] rounded-md'>
+                <form onSubmit={handleSubmit} className='flex bg-gray-50  dark:bg-darkbg0 h-10 w-80 mx-2 px-2 border-[1px] dark:border-darkbg2 rounded-md'>
                     <div className="inset-y-0 start-0 flex items-center pointer-events-none">
                         <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
@@ -260,30 +263,32 @@ const ViewClientFees = () => {
                     <input
                         id="master_code_input"
                         type="text"
-                        className="p-2 focus:outline-none bg-gray-50"
+                        className="p-2 focus:outline-none bg-gray-50 dark:bg-darkbg0 dark:text-neutral-300"
                         placeholder="Search Master Code"
                         value={inputValue}
                         onChange={handleChange}
                         required
                     />
-                    <button type='submit' className='mx-1 bg-lightgrey border-[1px] p-0 px-4 rounded-md shadow-md active:bg-white active:shadow-none m-1'>Search</button>
+                    <button type='submit' className='mx-1 bg-lightgrey dark:bg-darkbg2 dark:border-darkbg1 dark:text-neutral-300 border-[1px] p-0 px-4 rounded-md shadow-md active:bg-white active:shadow-none m-1'>Search</button>
                 </form>
             </div>
             <div className='w-full mt-3 justify-between flex'>
                 <div>
                     <div className='w-max rounded-md'>
-                        <div className='p-2 text-gray-600'>
-                            {mapData.length !== 0 && (
+                        <div className='p-2 text-gray-600 dark:text-neutral-300'>
+                          
+                            {mapData.length>0 && mapData.length !== 0 && (
                                 <span>
-                                    <b>Master Id:</b> <span className='text-blue-500 font-semibold'>{masterCode}</span>
+                                    <b>Master Code:</b> <a className='text-blue-500 font-semibold cursor-pointer hover:underline' onClick={()=>setShowDealSheet(true)} >{masterCode}</a>
                                 </span>
                             )}
+                            
                         </div>
                     </div>
                 </div>
             </div>
             <div>
-                {mapData.length !== 0 ? (
+                {mapData && mapData.length && mapData.length !== 0 ? (
                     <Table2ClientFees tabledata={mapData} setTableData={setMapData} setCurrentClientCode={setCurrentClientCode} />
                     // <Table tabledata={mapData} setTableData={setMapData} />
                 ) : (

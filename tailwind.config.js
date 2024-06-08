@@ -13,6 +13,9 @@ export default {
         "marun":"#7B2737",
         "lightgrey":"#FAF7F7",
         "lightgrey2":"#F1F1F1",
+        "darkbg0":"#262626",
+        "darkbg1":"#2E2E2E",
+        "darkbg2":"#3E3E3E",
         "selectRed":"#F22F54",
         "darkBluesidenav":"#262B3F",
         "darkBluesidenavgrey":"#222222",
@@ -24,5 +27,6 @@ export default {
     },
   },
   plugins: [],
+  darkMode:"class",
 }
 
